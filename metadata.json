@@ -1,0 +1,8 @@
+{
+  "name": "Sistem Pendataan Prestasi Siswa SMP Negeri 1 Pontianak",
+  "description": "Aplikasi Wakil Kepala Sekolah Bidang Kesiswaan SMP Negeri 1 Kota Pontianak untuk pendataan, rekapitulasi, dan pelaporan hasil perlombaan siswa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
