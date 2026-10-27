@@ -603,18 +603,28 @@ export const InputDataModal: React.FC<InputDataModalProps> = ({
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold text-slate-700 mb-1">
-                        Bidang Lomba
-                      </label>
-                      <select
-                        value={newPreset.bidang || 'Akademik'}
-                        onChange={e => setNewPreset({ ...newPreset, bidang: e.target.value as BidangLomba })}
+                      <div className="flex items-center justify-between mb-1">
+                        <label className="block text-[11px] font-semibold text-slate-700">
+                          Bidang Lomba
+                        </label>
+                        <span className="text-[10px] text-blue-600 font-normal">Bisa diedit</span>
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="Misal: Akademik, Olahraga, Pramuka..."
+                        value={newPreset.bidang || ''}
+                        onChange={e => setNewPreset({ ...newPreset, bidang: e.target.value })}
+                        list="preset-bidang-suggestions"
                         className="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-300 rounded-md focus:outline-hidden focus:border-blue-600 text-slate-900"
-                      >
+                      />
+                      <datalist id="preset-bidang-suggestions">
                         {BIDANG_OPTIONS.map(b => (
-                          <option key={b} value={b}>{b}</option>
+                          <option key={b} value={b} />
                         ))}
-                      </select>
+                        <option value="Pramuka & Kepanduan" />
+                        <option value="Bahasa & Sastra" />
+                        <option value="PMR & Kemanusiaan" />
+                      </datalist>
                     </div>
 
                     <div>
@@ -828,18 +838,52 @@ export const InputDataModal: React.FC<InputDataModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Bidang Lomba
-                </label>
-                <select
-                  value={formData.bidang || 'Akademik'}
-                  onChange={e => setFormData({ ...formData, bidang: e.target.value as BidangLomba })}
-                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 text-slate-900"
-                >
+                <div className="flex items-center justify-between mb-1">
+                  <label className="block text-xs font-medium text-slate-700">
+                    Bidang Lomba <span className="text-red-500">*</span>
+                  </label>
+                  <span className="text-[10px] text-blue-700 font-semibold">Bisa diketik / diedit bebas</span>
+                </div>
+                
+                <input
+                  type="text"
+                  placeholder="Ketik atau pilih bidang lomba, misal: Akademik, Olahraga..."
+                  value={formData.bidang || ''}
+                  onChange={e => setFormData({ ...formData, bidang: e.target.value })}
+                  list="bidang-lomba-suggestions"
+                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 text-slate-900 font-medium"
+                />
+                <datalist id="bidang-lomba-suggestions">
                   {BIDANG_OPTIONS.map(b => (
-                    <option key={b} value={b}>{b}</option>
+                    <option key={b} value={b} />
                   ))}
-                </select>
+                  <option value="Pramuka & Kepanduan" />
+                  <option value="PMR & Kemanusiaan" />
+                  <option value="Bahasa & Sastra" />
+                  <option value="Kewirausahaan / Entrepreneurship" />
+                  <option value="Paskibra & Baris Berbaris" />
+                </datalist>
+
+                {/* Quick Selection Chips */}
+                <div className="flex flex-wrap gap-1 mt-1.5">
+                  {BIDANG_OPTIONS.map(b => {
+                    const isSelected = formData.bidang === b;
+                    return (
+                      <button
+                        key={b}
+                        type="button"
+                        onClick={() => setFormData({ ...formData, bidang: b })}
+                        className={`text-[10px] px-2 py-0.5 rounded-md border transition-all cursor-pointer ${
+                          isSelected
+                            ? 'bg-blue-900 text-white border-blue-900 font-semibold shadow-2xs'
+                            : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100 hover:text-slate-900'
+                        }`}
+                      >
+                        {b}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
 
               <div>

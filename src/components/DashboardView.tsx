@@ -88,14 +88,17 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
     'Internasional': { barColor: 'bg-purple-600', dotColor: 'bg-purple-600' },
   };
 
-  // Group by category
-  const byBidang = {
-    'Akademik': data.filter(d => d.bidang === 'Akademik').length,
-    'Olahraga': data.filter(d => d.bidang === 'Olahraga').length,
-    'Seni & Budaya': data.filter(d => d.bidang === 'Seni & Budaya').length,
-    'Teknologi & Riset': data.filter(d => d.bidang === 'Teknologi & Riset').length,
-    'Keagamaan': data.filter(d => d.bidang === 'Keagamaan').length,
-  };
+  // Group by category dynamically including standard and custom bidang
+  const standardBidang = ['Akademik', 'Olahraga', 'Seni & Budaya', 'Teknologi & Riset', 'Keagamaan'];
+  const byBidang: Record<string, number> = {};
+  standardBidang.forEach(b => {
+    byBidang[b] = data.filter(d => d.bidang === b).length;
+  });
+  data.forEach(d => {
+    if (d.bidang && !byBidang.hasOwnProperty(d.bidang)) {
+      byBidang[d.bidang] = data.filter(item => item.bidang === d.bidang).length;
+    }
+  });
 
   const recentItems = [...data].slice(0, 5);
 

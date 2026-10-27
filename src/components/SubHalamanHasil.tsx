@@ -63,6 +63,13 @@ export const SubHalamanHasil: React.FC<SubHalamanHasilProps> = ({
   const [viewMode, setViewMode] = useState<'table' | 'cards'>('table');
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
+  // Dynamic available bidang list (merging standard categories and any custom bidang)
+  const availableBidangList = useMemo(() => {
+    const defaultList = ['Akademik', 'Olahraga', 'Seni & Budaya', 'Teknologi & Riset', 'Keagamaan', 'Lainnya'];
+    const customList = Array.from(new Set(data.map(d => d.bidang).filter(Boolean)));
+    return Array.from(new Set([...defaultList, ...customList]));
+  }, [data]);
+
   // Filtered & searched data
   const filteredData = useMemo(() => {
     return data.filter(item => {
@@ -303,12 +310,9 @@ export const SubHalamanHasil: React.FC<SubHalamanHasilProps> = ({
               className="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-md text-xs text-slate-800 focus:outline-hidden focus:border-blue-500"
             >
               <option value="SEMUA">Semua Bidang</option>
-              <option value="Akademik">Akademik</option>
-              <option value="Olahraga">Olahraga</option>
-              <option value="Seni & Budaya">Seni & Budaya</option>
-              <option value="Teknologi & Riset">Teknologi & Riset</option>
-              <option value="Keagamaan">Keagamaan</option>
-              <option value="Lainnya">Lainnya</option>
+              {availableBidangList.map(b => (
+                <option key={b} value={b}>{b}</option>
+              ))}
             </select>
           </div>
 

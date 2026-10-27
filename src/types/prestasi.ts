@@ -4,7 +4,8 @@ export type BidangLomba =
   | 'Seni & Budaya'
   | 'Teknologi & Riset'
   | 'Keagamaan'
-  | 'Lainnya';
+  | 'Lainnya'
+  | (string & {});
 
 export type TingkatPerlombaan = 
   | 'Kecamatan'
