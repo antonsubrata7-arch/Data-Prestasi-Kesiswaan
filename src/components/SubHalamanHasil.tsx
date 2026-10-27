@@ -95,7 +95,7 @@ export const SubHalamanHasil: React.FC<SubHalamanHasilProps> = ({
   const totalJuara1 = data.filter(d => d.capaian.includes('Juara 1') || d.capaian.includes('Emas')).length;
   const totalJuara2 = data.filter(d => d.capaian.includes('Juara 2') || d.capaian.includes('Perak')).length;
   const totalJuara3 = data.filter(d => d.capaian.includes('Juara 3') || d.capaian.includes('Perunggu')).length;
-  const totalPoin = data.reduce((acc, curr) => acc + (curr.poinPrestasi || 0), 0);
+  const totalSiswaUnik = new Set(data.map(d => d.namaSiswa.trim().toLowerCase())).size;
 
   const handleExport = () => {
     const filename = `Rekapitulasi_Prestasi_SMPN1_Pontianak_${new Date().toISOString().split('T')[0]}`;
@@ -225,9 +225,9 @@ export const SubHalamanHasil: React.FC<SubHalamanHasilProps> = ({
         </div>
 
         <div className="bg-white border border-blue-200/80 rounded-lg p-3.5 shadow-xs col-span-2 sm:col-span-1">
-          <div className="text-[11px] font-medium text-blue-900 uppercase tracking-wide">Poin Kesiswaan</div>
-          <div className="text-2xl font-bold text-blue-900 tabular-nums mt-0.5">{totalPoin}</div>
-          <div className="text-[11px] text-blue-700/80 mt-0.5">Akumulasi Poin</div>
+          <div className="text-[11px] font-medium text-blue-900 uppercase tracking-wide">Siswa Berprestasi</div>
+          <div className="text-2xl font-bold text-blue-900 tabular-nums mt-0.5">{totalSiswaUnik}</div>
+          <div className="text-[11px] text-blue-700/80 mt-0.5">Siswa Terdata</div>
         </div>
       </div>
 
@@ -440,7 +440,6 @@ export const SubHalamanHasil: React.FC<SubHalamanHasilProps> = ({
                   <th className="py-3 px-3">Jenis Lomba</th>
                   <th className="py-3 px-3">Tingkat & Penyelenggara</th>
                   <th className="py-3 px-3">Capaian Juara</th>
-                  <th className="py-3 px-3">Poin</th>
                   <th className="py-3 px-3">Waktu & SK</th>
                   <th className="py-3 px-4 text-right">Aksi</th>
                 </tr>
@@ -520,14 +519,6 @@ export const SubHalamanHasil: React.FC<SubHalamanHasilProps> = ({
                           {isBronze && <Medal className="w-3.5 h-3.5 text-amber-700 shrink-0" />}
                           <span>{item.capaian}</span>
                         </div>
-                      </td>
-
-                      {/* Poin Prestasi */}
-                      <td className="py-3 px-3">
-                        <div className="font-mono font-bold text-blue-900 tabular-nums">
-                          +{item.poinPrestasi}
-                        </div>
-                        <div className="text-[10px] text-slate-400">Poin PPDB</div>
                       </td>
 
                       {/* Waktu & Sertifikat */}
@@ -612,7 +603,7 @@ export const SubHalamanHasil: React.FC<SubHalamanHasilProps> = ({
                   <div className="p-4 space-y-2">
                     <div className="flex items-center justify-between text-xs text-slate-500">
                       <span>{item.bidang} · {item.jenisLomba || 'Individu'}</span>
-                      <span className="font-mono tabular-nums font-semibold text-blue-900">+{item.poinPrestasi} Poin</span>
+                      <span className="text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-medium">Terverifikasi</span>
                     </div>
 
                     <h3 className="text-sm font-bold text-slate-900 line-clamp-1">

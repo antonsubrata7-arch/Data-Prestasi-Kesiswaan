@@ -150,7 +150,7 @@ export const INITIAL_PRESTASI_DATA: PrestasiSiswa[] = [
     guruPembimbing: 'Bambang Soedjatmiko, S.Pd.',
     nomorSertifikat: '018/PERCASI-KALBAR/CUP/2026',
     poinPrestasi: 25,
-    catatan: 'Meraih 6,5 poin dari 7 babak Swiss System.',
+    catatan: 'Meraih 6,5 babak kemenangan dari 7 babak Swiss System.',
     fotoDokumentasi: '/src/assets/images/student_award_ceremony_1790818002727.jpg',
     terverifikasi: true,
     createdAt: '2026-02-23T15:10:00.000Z'

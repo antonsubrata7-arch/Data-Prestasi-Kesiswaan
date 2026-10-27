@@ -105,8 +105,7 @@ export function exportToCSV(data: any[], filename: string = 'Rekapitulasi_Presta
     'Tanggal Lomba',
     'Tahun Ajaran',
     'Guru Pembimbing',
-    'No Sertifikat',
-    'Poin Prestasi'
+    'No Sertifikat'
   ];
 
   const rows = data.map((item, index) => [
@@ -124,8 +123,7 @@ export function exportToCSV(data: any[], filename: string = 'Rekapitulasi_Presta
     `"${item.tanggal}"`,
     `"${item.tahunAjaran}"`,
     `"${item.guruPembimbing.replace(/"/g, '""')}"`,
-    `"${item.nomorSertifikat || '-'}"`,
-    item.poinPrestasi
+    `"${item.nomorSertifikat || '-'}"`
   ]);
 
   const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');

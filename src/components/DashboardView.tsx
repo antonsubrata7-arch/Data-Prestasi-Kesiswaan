@@ -65,7 +65,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   const totalJuara1 = data.filter(d => d.capaian.includes('Juara 1') || d.capaian.includes('Emas')).length;
   const totalJuara2 = data.filter(d => d.capaian.includes('Juara 2') || d.capaian.includes('Perak')).length;
   const totalJuara3 = data.filter(d => d.capaian.includes('Juara 3') || d.capaian.includes('Perunggu')).length;
-  const totalPoin = data.reduce((acc, curr) => acc + (curr.poinPrestasi || 0), 0);
+  const totalSiswaUnik = new Set(data.map(d => d.namaSiswa.trim().toLowerCase())).size;
 
   // Group by level
   const byTingkat = {
@@ -261,14 +261,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
         <div className="bg-white border border-blue-200 rounded-xl p-5 shadow-xs">
           <div className="flex items-center justify-between text-blue-900 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Total Poin Kesiswaan</span>
-            <TrendingUp className="w-5 h-5 text-blue-700" />
+            <span className="text-xs font-semibold uppercase tracking-wider">Siswa Berprestasi</span>
+            <Users className="w-5 h-5 text-blue-700" />
           </div>
           <div className="text-3xl font-extrabold text-blue-900 tabular-nums">
-            {totalPoin}
+            {totalSiswaUnik}
           </div>
           <div className="text-xs text-blue-700 mt-1">
-            Akumulasi skor pembinaan siswa
+            Peserta didik penerima penghargaan
           </div>
         </div>
 
@@ -413,8 +413,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                     </div>
 
                     <div className="shrink-0 flex flex-col items-end gap-1.5">
-                      <span className="text-xs font-mono font-bold text-blue-900 tabular-nums">
-                        +{item.poinPrestasi} Poin
+                      <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+                        Terverifikasi
                       </span>
                       <button
                         onClick={() => onViewDetail(item)}

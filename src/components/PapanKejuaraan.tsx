@@ -147,8 +147,8 @@ export const PapanKejuaraan: React.FC<PapanKejuaraanProps> = ({
                     <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
                     {item.capaian}
                   </span>
-                  <span className="text-[11px] font-mono font-semibold text-slate-500">
-                    +{item.poinPrestasi} Poin
+                  <span className="text-[11px] font-semibold text-blue-900 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded">
+                    {item.tingkat}
                   </span>
                 </div>
 

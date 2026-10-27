@@ -98,8 +98,8 @@ export const DetailPrestasiModal: React.FC<DetailPrestasiModalProps> = ({ item, 
                 <span className="font-mono text-slate-700">{item.nomorSertifikat || '-'}</span>
               </div>
               <div className="flex justify-between py-1">
-                <span className="text-slate-500">Bobot Poin Kesiswaan (PPDB):</span>
-                <span className="font-mono font-bold text-blue-900">+{item.poinPrestasi} Poin</span>
+                <span className="text-slate-500">Status Validasi:</span>
+                <span className="font-semibold text-emerald-700">Tervalidasi Resmi</span>
               </div>
             </div>
 
