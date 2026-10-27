@@ -137,14 +137,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Zone 3: Tombol Aksi, Akses Google Cloud, & Login/Keluar */}
           <div className="flex items-center gap-2">
             
-            {/* Tombol Akses Database MySQL & Google Cloud */}
+            {/* Tombol Akses Google Sheets & Database Cloud */}
             <button
               onClick={onOpenCloudSync}
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-blue-900 bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition-all whitespace-nowrap cursor-pointer"
-              title="Koneksi Database PHP + MySQL (XAMPP/cPanel) & Google Spreadsheet"
+              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-emerald-900 bg-emerald-50 hover:bg-emerald-100 rounded-lg border border-emerald-200 transition-all whitespace-nowrap cursor-pointer shadow-2xs"
+              title="Koneksi Google Sheets (Google Drive) & Database Cloud"
             >
-              <Database className="w-3.5 h-3.5 text-blue-700" />
-              <span className="hidden sm:inline">Database & Cloud</span>
+              <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600" />
+              <span className="hidden sm:inline">Google Sheets</span>
             </button>
 
             {/* Tombol Input Data Prestasi (Memerlukan Admin) */}
